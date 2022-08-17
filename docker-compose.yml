@@ -1,0 +1,11 @@
+version: '3'
+services:
+    db:
+        image: postgres:13.3
+        ports:
+            - 5432:5432
+        environment: 
+            - POSTGRES_HOST_AUTH_METHOD=trust
+            - POSTGRES_DB=market_maker_dev
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
