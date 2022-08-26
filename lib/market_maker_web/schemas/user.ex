@@ -3,15 +3,8 @@ defmodule MarketMakerWeb.Schemas.User do
 
   @spec create(map()) :: {:ok, map()} | {:error, :invalid_user_input}
   def create(params) do
-    user_schema =
-      schema(%{
-        "first_name" => spec(is_binary()),
-        "last_name" => spec(is_binary()),
-        "email" => spec(is_binary())
-      })
-
     params
-    |> conform(selection(user_schema))
+    |> conform(selection(schema()))
     |> transform(
       &%{
         first_name: &1["first_name"],
@@ -19,6 +12,15 @@ defmodule MarketMakerWeb.Schemas.User do
         email: &1["email"]
       }
     )
+  end
+
+  @spec schema() :: Norm.Schema.t()
+  def schema do
+    schema(%{
+      "first_name" => spec(is_binary() and (&(String.length(&1) > 0))),
+      "last_name" => spec(is_binary() and (&(String.length(&1) > 0))),
+      "email" => spec(is_binary() and (&(String.length(&1) > 0)))
+    })
   end
 
   defp transform({:ok, params}, fun), do: {:ok, fun.(params)}

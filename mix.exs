@@ -45,6 +45,8 @@ defmodule MarketMaker.MixProject do
       {:phoenix_live_dashboard, "~> 0.6"},
       {:esbuild, "~> 0.4", runtime: Mix.env() == :dev},
       {:swoosh, "~> 1.3"},
+      # For using Norm generators in tests
+      {:stream_data, "~> 0.5", only: :test},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.18"},
