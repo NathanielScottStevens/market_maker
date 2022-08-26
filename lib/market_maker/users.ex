@@ -7,4 +7,12 @@ defmodule MarketMaker.Users do
     |> User.changeset()
     |> Repo.insert()
   end
+
+  def get(id) do
+    Repo.get(User, id)
+  end
+
+  def get_all() do
+    Repo.all(User)
+  end
 end
