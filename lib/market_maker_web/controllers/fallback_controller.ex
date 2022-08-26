@@ -3,7 +3,7 @@ defmodule MarketMakerWeb.FallbackController do
 
   alias MarketMakerWeb.ErrorView
 
-  def call(conn, {:error, :invalid_user_input}) do
+  def call(conn, {:error, %Ecto.Changeset{}}) do
     conn
     |> put_status(:bad_request)
     |> put_view(ErrorView)

@@ -1,15 +1,24 @@
 defmodule MarketMakerWeb.UserControllerTest do
   use MarketMakerWeb.ConnCase
   alias MarketMakerWeb.Router.Helpers, as: PathHelper
-  alias MarketMakerWeb.Schemas.User
+  alias MarketMakerWeb.UserHelper
+
+  describe "GET /users" do
+    test "returns success response", %{conn: conn} do
+      user = UserHelper.create(conn)
+
+      result =
+        conn
+        |> get(PathHelper.user_path(conn, :show, user["id"]))
+        |> json_response(200)
+
+      assert user["first_name"] == result["first_name"]
+    end
+  end
 
   describe "POST /users" do
     test "returns success response", %{conn: conn} do
-      user =
-        User.schema()
-        |> Norm.gen()
-        |> Enum.take(1)
-        |> IO.inspect(label: "test/market_maker_web/controllers/user_controller_test.exs:8")
+      user = UserHelper.data()
 
       result =
         conn
@@ -20,11 +29,7 @@ defmodule MarketMakerWeb.UserControllerTest do
     end
 
     test "returns 400 when data is invalid", %{conn: conn} do
-      user = %{
-        "first_name" => 1,
-        "last_name" => "stevens",
-        "email" => "my-email@example.com"
-      }
+      user = UserHelper.data(%{"first_name" => 1})
 
       assert conn
              |> post(PathHelper.user_path(conn, :create), user)
