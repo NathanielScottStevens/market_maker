@@ -1,14 +1,15 @@
 defmodule MarketMaker.Schema.User do
-  use Ecto.Schema
+  use MarketMaker.Schema
   import Ecto.Changeset
+  alias MarketMaker.Schema.Visit
 
-  @primary_key {:id, Ecto.UUID, autogenerate: true}
   @fields [:first_name, :last_name, :email]
 
   schema "users" do
     field :first_name, :string
     field :last_name, :string
     field :email, :string
+    has_many :visits, Visit
 
     timestamps()
   end

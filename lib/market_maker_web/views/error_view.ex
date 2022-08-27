@@ -14,7 +14,9 @@ defmodule MarketMakerWeb.ErrorView do
     Phoenix.Controller.status_message_from_template(template)
   end
 
-  def render("400.json", __assigns) do
-    %{errors: %{detail: "Invalid user request"}}
+  def render("changeset_errors.json", %{changeset: changeset}) do
+    errors = changeset |> Ecto.Changeset.traverse_errors(fn {msg, _opts} -> msg end)
+
+    %{errors: %{detail: errors}}
   end
 end

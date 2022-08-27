@@ -9,5 +9,6 @@ defmodule MarketMakerWeb.Router do
     pipe_through :api
 
     resources "/users", UserController, only: [:index, :show, :create, :update]
+    resources "/visits", VisitController, only: [:index, :show, :create, :update]
   end
 end

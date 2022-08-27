@@ -1,0 +1,155 @@
+let SessionLoad = 1
+let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
+let v:this_session=expand("<sfile>:p")
+silent only
+silent tabonly
+cd ~/elixir/market_maker
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+let s:shortmess_save = &shortmess
+if &shortmess =~ 'A'
+  set shortmess=aoOA
+else
+  set shortmess=aoO
+endif
+badd +2 lib/users.ex
+badd +1 lib/market_maker/users/schema.ex
+badd +12 lib/market_maker_web/router.ex
+badd +14 lib/market_maker_web/views/user_view.ex
+badd +4 priv/repo/migrations/20220817152226_create_users.exs
+badd +16 lib/market_maker/schema/user.ex
+badd +7 lib/market_maker/users.ex
+badd +8 lib/market_maker_web/controllers/user_controller.ex
+badd +2 test/market_maker_web/views/page_view_test.exs
+badd +1 test/market_maker_web/views
+badd +1 test/market_maker_web/controllers/page_controller_test.exs
+badd +5 test/market_maker_web/controllers/user_controller_test.exs
+badd +49 mix.exs
+badd +1 lib/market_maker_web/schemas/users.ex
+badd +1 lib/market_maker_web/schemas
+badd +21 lib/market_maker_web/schemas/user.ex
+badd +17 lib/market_maker_web/views/error_view.ex
+badd +1 lib/market_maker_web/views
+badd +47 lib/market_maker_web/views/error_helpers.ex
+badd +10 lib/market_maker_web/controllers/fallback_controller.ex
+badd +1 lib/market_maker_web/controllers/page_controller.ex
+badd +16 README.md
+badd +1 test/test_helper.exs
+badd +2 test/user_helper.exs
+badd +1 test/user_helper.ex.
+badd +1 test/support/data_case.ex
+badd +4 test/support/user_helper.ex
+badd +1 test/support/conn_case.ex
+badd +20 lib/market_maker_web/controllers/visit_controller.ex
+badd +7 lib/market_maker/visits.ex
+badd +22 lib/market_maker/schema/visit.ex
+badd +9 priv/repo/migrations/20220826193247_create_visits.exs
+badd +10 lib/market_maker_web/views/visit_view.ex
+badd +10 test/market_maker_web/controllers/visit_controller_test.exs
+badd +14 test/support/visit_helper.ex
+argglobal
+%argdel
+set stal=2
+tabnew +setlocal\ bufhidden=wipe
+tabrewind
+edit lib/market_maker_web/views/error_view.ex
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 119 + 111) / 222)
+exe 'vert 2resize ' . ((&columns * 102 + 111) / 222)
+argglobal
+balt lib/market_maker_web/controllers/fallback_controller.ex
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=99
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+1
+normal! zo
+let s:l = 17 - ((16 * winheight(0) + 29) / 58)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 17
+normal! 030|
+lcd ~/elixir/market_maker
+wincmd w
+argglobal
+if bufexists(fnamemodify("~/elixir/market_maker/test/support/visit_helper.ex", ":p")) | buffer ~/elixir/market_maker/test/support/visit_helper.ex | else | edit ~/elixir/market_maker/test/support/visit_helper.ex | endif
+if &buftype ==# 'terminal'
+  silent file ~/elixir/market_maker/test/support/visit_helper.ex
+endif
+balt ~/elixir/market_maker/test/market_maker_web/controllers/visit_controller_test.exs
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=99
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 22 - ((21 * winheight(0) + 29) / 58)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 22
+normal! 07|
+lcd ~/elixir/market_maker
+wincmd w
+exe 'vert 1resize ' . ((&columns * 119 + 111) / 222)
+exe 'vert 2resize ' . ((&columns * 102 + 111) / 222)
+tabnext
+edit ~/elixir/market_maker/test/market_maker_web/controllers/user_controller_test.exs
+argglobal
+balt ~/elixir/market_maker/lib/market_maker/users.ex
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=99
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 1 - ((0 * winheight(0) + 22) / 44)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 0
+lcd ~/elixir/market_maker
+tabnext 1
+set stal=1
+if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=20
+let &shortmess = s:shortmess_save
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if filereadable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &g:so = s:so_save | let &g:siso = s:siso_save
+let g:this_session = v:this_session
+let g:this_obsession = v:this_session
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

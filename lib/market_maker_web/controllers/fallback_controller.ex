@@ -3,10 +3,10 @@ defmodule MarketMakerWeb.FallbackController do
 
   alias MarketMakerWeb.ErrorView
 
-  def call(conn, {:error, %Ecto.Changeset{}}) do
+  def call(conn, {:error, %Ecto.Changeset{} = changeset}) do
     conn
     |> put_status(:bad_request)
     |> put_view(ErrorView)
-    |> render(:"400.json")
+    |> render("changeset_errors.json", changeset: changeset)
   end
 end
