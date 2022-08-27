@@ -2,6 +2,7 @@ defmodule MarketMaker.Schema.User do
   use MarketMaker.Schema
   import Ecto.Changeset
   alias MarketMaker.Schema.Visit
+  alias MarketMaker.Schema.Transaction
 
   @fields [:first_name, :last_name, :email]
 
@@ -10,6 +11,7 @@ defmodule MarketMaker.Schema.User do
     field :last_name, :string
     field :email, :string
     has_many :visits, Visit
+    has_many :transactions, Transaction
 
     timestamps()
   end

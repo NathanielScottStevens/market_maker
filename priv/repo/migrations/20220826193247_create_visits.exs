@@ -7,7 +7,7 @@ defmodule MarketMaker.Repo.Migrations.CreateVisits do
       add :date, :date, null: false
       add :minutes, :integer, null: false
       add :tasks, :string, null: false
-      add :user_id, :uuid, null: false
+      add :user_id, references(:users, type: :uuid), null: false
 
       timestamps()
     end

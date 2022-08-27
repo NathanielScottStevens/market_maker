@@ -21,7 +21,7 @@ defmodule MarketMakerWeb.VisitControllerTest do
   describe "POST /visits" do
     test "returns success response", %{conn: conn} do
       user = UserHelper.create(conn)
-      visit = VisitHelper.create(conn, user["id"])
+      visit = VisitHelper.data(user["id"])
 
       result =
         conn
@@ -33,7 +33,7 @@ defmodule MarketMakerWeb.VisitControllerTest do
 
     test "returns 400 when data is invalid", %{conn: conn} do
       user = UserHelper.create(conn)
-      visit = VisitHelper.create(conn, user["id"])
+      visit = VisitHelper.data(user["id"], %{"date" => "not-a-date"})
 
       assert conn
              |> post(PathHelper.visit_path(conn, :create), visit)

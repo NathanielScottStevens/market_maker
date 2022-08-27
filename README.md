@@ -12,6 +12,10 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 
 ## TODO
 - [ ] Add informative error messages for invalid user data
+- [ ] Uniqueness constraints on tables?
+- [ ] Use full map comparisons on tests
+- [ ] Dialyzer/Specs
+- [ ] Credo
 
 ## Learn more
 

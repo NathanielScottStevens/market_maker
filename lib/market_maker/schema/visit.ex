@@ -2,6 +2,7 @@ defmodule MarketMaker.Schema.Visit do
   use MarketMaker.Schema
   import Ecto.Changeset
   alias MarketMaker.Schema.User
+  alias MarketMaker.Schema.Transaction
 
   @fields [:user_id, :date, :minutes, :tasks]
 
@@ -10,6 +11,7 @@ defmodule MarketMaker.Schema.Visit do
     field :minutes, :integer
     field :tasks, :string
     belongs_to :user, User, references: :id, type: Ecto.UUID
+    has_one :transaction, Transaction
 
     timestamps()
   end

@@ -10,5 +10,6 @@ defmodule MarketMakerWeb.Router do
 
     resources "/users", UserController, only: [:index, :show, :create, :update]
     resources "/visits", VisitController, only: [:index, :show, :create, :update]
+    resources "/transactions", TransactionController, only: [:index, :show, :create, :update]
   end
 end
