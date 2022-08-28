@@ -1,9 +1,17 @@
 defmodule MarketMaker.Schema.User do
+  @moduledoc false
   use MarketMaker.Schema
   import Ecto.Changeset
   alias MarketMaker.Schema.Visit
   alias MarketMaker.Schema.Transaction
 
+  @type t :: %__MODULE__{
+          first_name: String.t(),
+          last_name: String.t(),
+          email: String.t(),
+          visits: list(Visit),
+          transactions: list(Transaction)
+        }
   @fields [:first_name, :last_name, :email]
 
   schema "users" do

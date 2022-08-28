@@ -22,7 +22,6 @@ defmodule MarketMakerWeb do
       use Phoenix.Controller, namespace: MarketMakerWeb
 
       import Plug.Conn
-      import MarketMakerWeb.Gettext
       alias MarketMakerWeb.Router.Helpers, as: Routes
     end
   end
@@ -80,7 +79,6 @@ defmodule MarketMakerWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import MarketMakerWeb.Gettext
     end
   end
 
@@ -96,7 +94,6 @@ defmodule MarketMakerWeb do
       import Phoenix.View
 
       import MarketMakerWeb.ErrorHelpers
-      import MarketMakerWeb.Gettext
       alias MarketMakerWeb.Router.Helpers, as: Routes
     end
   end

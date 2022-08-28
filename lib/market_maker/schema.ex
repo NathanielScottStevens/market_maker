@@ -1,4 +1,7 @@
 defmodule MarketMaker.Schema do
+  @moduledoc """
+  Shared settings for all schemas in this project.
+  """
   defmacro __using__(_) do
     quote do
       use Ecto.Schema

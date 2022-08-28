@@ -1,8 +1,18 @@
 defmodule MarketMaker.Schema.Visit do
+  @moduledoc """
+  A visit represents a requested service which will be filled by another user.
+  """
   use MarketMaker.Schema
   import Ecto.Changeset
   alias MarketMaker.Schema.User
   alias MarketMaker.Schema.Transaction
+
+  @type t :: %__MODULE__{
+          user_id: String.t(),
+          date: Date.t(),
+          minutes: integer,
+          tasks: String.t()
+        }
 
   @fields [:user_id, :date, :minutes, :tasks]
 

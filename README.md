@@ -16,6 +16,8 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 - [ ] Use full map comparisons on tests
 - [ ] Dialyzer/Specs
 - [ ] Credo
+- [ ] User unique on email
+- [ ] Don't allow negative minutes
 
 ## Learn more
 

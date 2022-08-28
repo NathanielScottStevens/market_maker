@@ -39,7 +39,6 @@ defmodule MarketMakerWeb.TransactionControllerTest do
     test "returns 400 when data is invalid", %{conn: conn} do
       owner = UserHelper.create(conn)
       provider = UserHelper.create(conn)
-      visit = VisitHelper.create(conn, owner["id"])
       transaction = TransactionHelper.data(owner["id"], provider["id"], "invalid_id")
 
       assert conn

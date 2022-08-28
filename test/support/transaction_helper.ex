@@ -1,4 +1,5 @@
 defmodule MarketMakerWeb.TransactionHelper do
+  @moduledoc false
   import Phoenix.ConnTest
 
   alias MarketMakerWeb.Router.Helpers, as: PathHelper

@@ -10,10 +10,6 @@ defmodule MarketMaker.Application do
     children = [
       # Start the Ecto repository
       MarketMaker.Repo,
-      # Start the Telemetry supervisor
-      MarketMakerWeb.Telemetry,
-      # Start the PubSub system
-      {Phoenix.PubSub, name: MarketMaker.PubSub},
       # Start the Endpoint (http/https)
       MarketMakerWeb.Endpoint
       # Start a worker by calling: MarketMaker.Worker.start_link(arg)
