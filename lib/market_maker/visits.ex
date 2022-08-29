@@ -12,9 +12,12 @@ defmodule MarketMaker.Visits do
     |> Repo.insert()
   end
 
-  @spec get(String.t()) :: Visit.t() | nil
+  @spec get(String.t()) :: {:ok, Visit.t()} | {:error, :visit_not_found}
   def get(id) do
-    Repo.get(Visit, id)
+    case Repo.get(Visit, id) do
+      nil -> {:error, :visit_not_found}
+      user -> {:ok, user}
+    end
   end
 
   @spec get_all() :: list(Visit.t())

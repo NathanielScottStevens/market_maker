@@ -19,4 +19,9 @@ defmodule MarketMakerWeb.ErrorView do
 
     %{errors: %{detail: errors}}
   end
+
+  def render("400_generic.json", %{error: error}) do
+    error_text = error |> Atom.to_string() |> String.replace("_", " ")
+    %{errors: %{detail: error_text}}
+  end
 end

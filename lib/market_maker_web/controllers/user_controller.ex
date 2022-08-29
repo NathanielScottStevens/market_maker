@@ -12,8 +12,9 @@ defmodule MarketMakerWeb.UserController do
   end
 
   def show(conn, %{"id" => id}) do
-    user = Users.get(id)
-    render(conn, "show.json", user: user)
+    with {:ok, user} <- Users.get(id) do
+      render(conn, "show.json", user: user)
+    end
   end
 
   def create(conn, params) do

@@ -3,6 +3,7 @@ defmodule MarketMakerWeb.VisitHelper do
   import Phoenix.ConnTest
 
   alias MarketMakerWeb.Router.Helpers, as: PathHelper
+  alias MarketMaker.Visits
 
   @endpoint MarketMakerWeb.Endpoint
 
@@ -11,7 +12,7 @@ defmodule MarketMakerWeb.VisitHelper do
       %{
         "user_id" => user_id,
         "date" => "2022-01-25",
-        "minutes" => 90,
+        "minutes" => 30,
         "tasks" => "Take out garbage"
       },
       params
@@ -22,5 +23,10 @@ defmodule MarketMakerWeb.VisitHelper do
     conn
     |> post(PathHelper.visit_path(conn, :create), data(user_id, params))
     |> json_response(200)
+  end
+
+  def create_from_context(user_id, params \\ %{}) do
+    {:ok, visits} = Visits.create(data(user_id, params))
+    visits
   end
 end

@@ -9,15 +9,18 @@ defmodule MarketMaker.Schema.User do
           first_name: String.t(),
           last_name: String.t(),
           email: String.t(),
+          minutes: integer(),
           visits: list(Visit),
           transactions: list(Transaction)
         }
-  @fields [:first_name, :last_name, :email]
+  @fields [:first_name, :last_name, :email, :minutes]
 
   schema "users" do
     field :first_name, :string
     field :last_name, :string
     field :email, :string
+    field :minutes, :integer
+    field :lock_version, :integer, default: 1
     has_many :visits, Visit
     has_many :transactions, Transaction
 
@@ -30,5 +33,6 @@ defmodule MarketMaker.Schema.User do
     user
     |> cast(params, @fields)
     |> validate_required(@fields)
+    |> optimistic_lock(:lock_version)
   end
 end

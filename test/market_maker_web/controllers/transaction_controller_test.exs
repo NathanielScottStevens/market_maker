@@ -39,7 +39,8 @@ defmodule MarketMakerWeb.TransactionControllerTest do
     test "returns 400 when data is invalid", %{conn: conn} do
       owner = UserHelper.create(conn)
       provider = UserHelper.create(conn)
-      transaction = TransactionHelper.data(owner["id"], provider["id"], "invalid_id")
+      unknown_id = Ecto.UUID.generate()
+      transaction = TransactionHelper.data(owner["id"], provider["id"], unknown_id)
 
       assert conn
              |> post(PathHelper.transaction_path(conn, :create), transaction)

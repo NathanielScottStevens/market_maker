@@ -12,8 +12,9 @@ defmodule MarketMakerWeb.VisitController do
   end
 
   def show(conn, %{"id" => id}) do
-    visit = Visits.get(id)
-    render(conn, "show.json", visit: visit)
+    with {:ok, visit} <- Visits.get(id) do
+      render(conn, "show.json", visit: visit)
+    end
   end
 
   def create(conn, params) do
