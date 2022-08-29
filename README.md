@@ -1,6 +1,8 @@
 # MarketMaker
 A simple market maker API that allows users to request visits to perform tasks from other users. This exchange of services is mediated by minutes rather than currency.
 
+Transactions use optimistic locking to ensure minutes are not allocated inappropriately.
+
 
 ## Development
 * Best practices are enforced by Credo `mix credo`
@@ -16,11 +18,9 @@ To start your Phoenix server:
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 ## TODO
-- [ ] Add informative error messages for invalid user data
 - [ ] Uniqueness constraints on tables?
 - [ ] Use full map comparisons on tests
-- [ ] Dialyzer/Specs
-- [ ] Credo
+- [ ] API documentation
 - [ ] User unique on email
 - [ ] Don't allow negative minutes
 
